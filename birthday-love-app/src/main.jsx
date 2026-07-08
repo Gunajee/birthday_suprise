@@ -10,7 +10,7 @@ if (import.meta.env.PROD) {
   initDevtoolsBlock();
 }
 // To this (forces block even in dev — for testing only):
-// initDevtoolsBlock();
+initDevtoolsBlock();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
