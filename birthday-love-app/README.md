@@ -1,4 +1,4 @@
-# 💖 Birthday Love & Proposal Website
+# 💖 Birthday Suprise Website
 
 A premium, interactive birthday celebration website with 30 hidden secrets,
 a memory scrapbook, mini-games, Tamil kavithaigal, 3D visuals, and a
