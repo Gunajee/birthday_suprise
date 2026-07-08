@@ -1,4 +1,4 @@
-# 💍 Proposal Backend — Spring Boot + Mailjet + MySQL
+# 💍 Birthday Suprise— Spring Boot + Mailjet + MySQL
 
 Receives events from the birthday/proposal frontend and sends you an
 **instant email via Mailjet** the moment she finds the hidden proposal.
