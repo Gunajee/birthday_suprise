@@ -14,7 +14,24 @@ export default defineConfig({
     allowedHosts: ["rubigabirthday.up.railway.app"],
   },
 
+  // ── Dependency pre-bundling ──────────────────────────────────
+  // Forces Vite to pre-bundle react-player during dev so its CJS
+  // exports are handled the same way in dev and production.
+  optimizeDeps: {
+    include: ["react-player"],
+  },
+
   build: {
+    // ── CJS/ESM interop ─────────────────────────────────────────
+    // react-player ships as CommonJS. Without this, Rollup's
+    // production build can resolve its default export as undefined
+    // (works fine in dev, breaks only after build) — this is what
+    // was causing "Minified React error #130" when clicking a video
+    // card, since <ReactPlayer /> resolved to undefined.
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+
     // ── Minification & obfuscation ─────────────────────────────
     // 'terser' gives better obfuscation than the default 'esbuild'
     // minifier — it renames variables to single letters, removes
