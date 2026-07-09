@@ -37,7 +37,7 @@ export default defineConfig({
     // minifier — it renames variables to single letters, removes
     // comments, mangles function names, etc. making source unreadable
     // even if someone extracts the JS bundle.
-    minify: "terser",
+    minify: false,
     terserOptions: {
       compress: {
         drop_console: true, // removes all console.log/warn/info calls
