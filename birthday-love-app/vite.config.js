@@ -19,6 +19,7 @@ export default defineConfig({
     // 'terser' gives better obfuscation than the default 'esbuild'
     // minifier — it renames variables to single letters, removes
     // comments, mangles function names, etc. making source unreadable
+    // even if someone extracts the JS bundle.
     minify: "terser",
     terserOptions: {
       compress: {
@@ -36,7 +37,11 @@ export default defineConfig({
         unsafe_proto: true,
       },
       mangle: {
-        toplevel: true, // renames top-level variable/function names
+        // toplevel: false — mangling top-level names was breaking the
+        // link between chunks (React ending up undefined in chunks
+        // that depend on it, e.g. framer-motion / react-three-fiber
+        // calling useLayoutEffect on an undefined React object).
+        toplevel: false,
         properties: {
           regex: /^_/, // mangle any property starting with _ (private convention)
         },
@@ -48,26 +53,17 @@ export default defineConfig({
     },
 
     // ── Chunk splitting ────────────────────────────────────────
-    // Split into many small chunks — makes it harder to find any
-    // specific piece of logic because it's spread across many files.
+    // manualChunks removed for now — splitting React away from
+    // libraries that depend on its internals (framer-motion, three/
+    // @react-three) was causing those chunks to load before/without
+    // a valid React reference. Letting Vite/Rollup handle chunking
+    // automatically keeps React bundled with whatever needs it.
     rollupOptions: {
       output: {
         // Randomise chunk filenames (hash-based, not name-based)
         chunkFileNames: "assets/[hash].js",
         entryFileNames: "assets/[hash].js",
         assetFileNames: "assets/[hash].[ext]",
-
-        manualChunks: (id) => {
-          if (id.includes("node_modules")) {
-            // Vendor libraries in their own chunk
-            if (id.includes("react") || id.includes("react-dom"))
-              return "v-react";
-            if (id.includes("framer-motion")) return "v-motion";
-            if (id.includes("three") || id.includes("@react-three"))
-              return "v-3d";
-            return "v-libs";
-          }
-        },
       },
     },
 
