@@ -19,7 +19,6 @@ export default defineConfig({
     // 'terser' gives better obfuscation than the default 'esbuild'
     // minifier — it renames variables to single letters, removes
     // comments, mangles function names, etc. making source unreadable
-    // even if someone extracts the JS bundle.
     minify: "terser",
     terserOptions: {
       compress: {
