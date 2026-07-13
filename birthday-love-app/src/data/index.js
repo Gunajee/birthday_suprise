@@ -40,7 +40,7 @@ export const GREETINGS = [
   {
     e: "🌸",
     title: "Forever Wonderful",
-    msg: "May today be as beautiful as your smile. Happy Birthday, Pricess Rubi!",
+    msg: "May today be as beautiful as your smile. Happy Birthday, Princess Rubi!",
   },
   {
     e: "✨",

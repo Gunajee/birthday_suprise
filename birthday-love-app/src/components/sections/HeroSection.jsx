@@ -31,7 +31,7 @@ export default function HeroSection({
 
   const heroTitle =
     birthdayMode === "birthday"
-      ? "🎂 Happy Birthday Pricess Rubiga ❤️"
+      ? "🎂 Happy Birthday Princess Rubiga ❤️"
       : "🎂 Advance Happy Birthday Rubi❤️";
 
   const heroSubtagline =
